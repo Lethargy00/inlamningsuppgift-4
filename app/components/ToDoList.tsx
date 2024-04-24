@@ -185,7 +185,90 @@ const ToDoList: React.FC = () => {
 
 
     return (
-        
+        <div>
+            <div className='filterContainer'>
+                <label>
+                    <input type="checkbox" checked={hideChecked} onChange={() => setHideChecked(!hideChecked)} />
+                    Hide checked items
+                </label>
+                <Select
+                    value={selectedStatus}
+                    onChange={setSelectedStatus}
+                    options={statusOptions}
+                    placeholder="Filter by status"
+                    isSearchable={false}
+                    isClearable
+                    className='filterSelect'         
+                />
+            </div>
+            <ul className='itemContainer'>
+                {filteredByStatus.map((item) => (
+                    <li key={item.id.toString()} className='listItem'>
+                        <div className='itemContent'>
+                            <input type="checkbox" checked={item.checked} onChange={() => toggleItemChecked(item.id)} />
+                            {item.text}
+                            <Select
+                                value={statusOptions.find(option => option.value === item.status)}
+                                onChange={(selectedOption) => updateStatus(item.id, selectedOption)}
+                                options={statusOptions}
+                                isSearchable={false}
+                                className='statusSelect'
+                            />
+                            <button onClick={() => removeItem(item.id)}><FontAwesomeIcon icon={faTrashCan}/></button>
+                        </div>
+                        <div className='itemDetails'>
+                            <p>{item.subject}</p>
+                            {item.priority === "high" && (
+                                <p className='text-red-500'>High <FontAwesomeIcon icon={faCircle}/></p>
+                            )}
+                            {item.priority === "medium" && (
+                                <p className='text-orange-500'>Medium <FontAwesomeIcon icon={faCircle}/></p>
+                            )}
+                            {item.priority === "low" && (
+                                <p className='text-green-500'>Low <FontAwesomeIcon icon={faCircle}/></p>
+                            )}
+                        </div>
+                    </li>
+                ))}
+            </ul>
+            <div className="inputFieldContainer">
+                <div className="inputField">
+                    <div>
+                        <Select
+                            value={selectedPriority}
+                            onChange={setSelectedPriority}
+                            options={priorityOptions}
+                            placeholder="Select Priority"
+                            isSearchable={false}
+                            isClearable
+                            className='filterSelect'
+                        />
+                        <Select
+                            value={selectedSubject}
+                            onChange={setSelectedSubject}
+                            options={subjectOptions}
+                            placeholder="Select Subject"
+                            isSearchable={false}
+                            isClearable
+                            className='filterSelect'
+                        />
+                    </div>
+                <input 
+                    type="text" 
+                    placeholder='Input' 
+                    value={inputValue} 
+                    onChange={(e) => setInputValue(e.target.value)}        
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            addItem();
+                        }
+                    }}
+                />
+                </div>
+                <button type="button" onClick={addItem}><FontAwesomeIcon icon={faPlus}/></button>
+            </div>
+        </div>
+
     );
 };
 
