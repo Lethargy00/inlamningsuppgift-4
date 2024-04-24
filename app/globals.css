@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #dac0a3;
+  --color-alt-bg: #eadbc8;
+  --color-text: #000000;
+  --color-alt-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --color-bg: #272727;
+  --color-alt-bg: #373737;
+  --color-text: #ffffff;
+  --color-alt-text: #000000;
+}
+
+* input,
+* svg {
+  cursor: pointer;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  margin-top: 25px;
+  max-width: 800px;
+  width: 90vw;
+  height: 80vh;
+  border: 15px solid var(--color-alt-bg);
+  border-radius: 15px;
+  background-color: var(--color-alt-bg);
+}
+
+.listHeader {
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listHeader > h1 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.themeButton {
+  align-content: center;
+}
+
+.filterContainer {
+  display: flex;
+  margin-top: 15px;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.filterContainer > label {
+  display: flex;
+  user-select: none;
+  gap: 10px;
+  background-color: var(--color-bg);
+  border: 15px solid var(--color-bg);
+  border-radius: 15px;
+}
+
+.filterContainer > label:hover {
+  cursor: pointer;
+}
+
+.filterSelect {
+  display: flex;
+}
+
+.filterSelect [class$="-indicatorContainer"] > svg {
+  color: var(--color-text);
+}
+
+.filterSelect [class$="-singleValue"] {
+  color: var(--color-text);
+}
+
+.filterSelect [class$="-placeholder"] {
+  color: var(--color-text);
+}
+
+.filterSelect [class$="-control"] {
+  background-color: var(--color-bg);
+  border: none;
+  border-radius: 15px;
+}
+
+.filterSelect [class$="-menu"] {
+  background-color: var(--color-bg);
+}
+
+.filterSelect [class$="-value-container"] {
+  background-color: var(--color-alt-bg);
+}
+
+.filterSelect [class$="-option"] {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.filterSelect [class$="-option"]:hover {
+  background-color: var(--color-alt-bg);
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  height: calc(62vh - 110px);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  border: 15px solid var(--color-bg);
+  border-radius: 15px;
+}
+
+.listItem > button:hover {
+  color: #ff5757;
+}
+
+.itemContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.itemDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.statusSelect {
+  margin-left: auto;
+}
+
+.statusSelect [class$="-indicatorContainer"] > svg {
+  color: var(--color-text);
+}
+
+.statusSelect [class$="-singleValue"] {
+  color: var(--color-text);
+}
+
+.statusSelect [class$="-placeholder"] {
+  color: var(--color-text);
+}
+
+.statusSelect [class$="-control"] {
+  background-color: var(--color-alt-bg);
+  border: none;
+}
+
+.statusSelect [class$="-menu"] {
+  background-color: var(--color-alt-bg);
+}
+
+.statusSelect [class$="-value-container"] {
+  background-color: var(--color-bg);
+}
+
+.statusSelect [class$="-option"] {
+  color: var(--color-text);
+  background-color: var(--color-alt-bg);
+}
+
+.statusSelect [class$="-option"]:hover {
+  background-color: var(--color-bg);
+}
+
+.inputFieldContainer {
+  display: flex;
+  align-items: center;
+}
+
+.inputFieldContainer > button {
+  display: flex;
+  color: var(--color-bg);
+  font-size: 24px;
+  margin-top: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.inputFieldContainer > button:hover {
+  color: #93ff78;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 15px;
+}
+
+.inputField > div:first-child {
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+}
+
+.inputField > input {
+  outline: none;
+  color: var(--color-text);
+  border: 15px solid var(--color-bg);
+  border-radius: 15px;
+  background-color: var(--color-bg);
+}
+
+/* input[type="checkbox"] {
+
+} */
