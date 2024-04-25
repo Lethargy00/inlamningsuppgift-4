@@ -57,6 +57,7 @@ const ToDoList: React.FC = () => {
   const [selectedSubject, setSelectedSubject] = useState<SubjectOptions | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Fetch and display tasks on first render
   useEffect(() => {
     const init = async () => {
       try {
@@ -73,9 +74,9 @@ const ToDoList: React.FC = () => {
       }
     };
     init();
-    console.log("init");
   }, []);
 
+  // Add new task to IndexedDB and update the state of the list
   const addItem = async () => {
     const newItem: Omit<ToDoItem, "id"> = {
       text: inputValue,
@@ -280,7 +281,7 @@ const ToDoList: React.FC = () => {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Input"
+            placeholder="Task description..."
             value={inputValue}
             autoFocus
             onChange={e => setInputValue(e.target.value)}
