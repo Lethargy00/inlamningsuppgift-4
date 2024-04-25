@@ -184,7 +184,7 @@ const ToDoList: React.FC = () => {
     : filteredList;
 
   return (
-    <div>
+    <>
       <div className="filterContainer">
         <label>
           <input type="checkbox" checked={hideChecked} onChange={() => setHideChecked(!hideChecked)} />
@@ -300,7 +300,7 @@ const ToDoList: React.FC = () => {
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

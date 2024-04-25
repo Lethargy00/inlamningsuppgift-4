@@ -36,6 +36,8 @@ html {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   margin-top: 25px;
   max-width: 800px;
   width: 90vw;
@@ -64,6 +66,7 @@ main {
 .filterContainer {
   display: flex;
   margin-top: 15px;
+  height: 55px;
   gap: 15px;
   justify-content: space-between;
 }
@@ -129,7 +132,7 @@ main {
   display: flex;
   flex-direction: column;
   overflow-x: auto;
-  height: calc(62vh - 110px);
+  flex-grow: 1;
   margin-top: 15px;
   margin-bottom: 15px;
   gap: 15px;
@@ -204,6 +207,7 @@ main {
 
 .inputFieldContainer {
   display: flex;
+  height: 100px;
   align-items: center;
 }
 
