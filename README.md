@@ -8,11 +8,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 4. Start the application with <i><b>npm run dev</b></i> in the terminal
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-
 ## About the app
 This is a simple task management application. Tasks can be assigned a category, priority and status.
 
