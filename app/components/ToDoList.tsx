@@ -51,11 +51,37 @@ const subjectOptions = [
 const ToDoList: React.FC = () => {
   const [list, setList] = useState<ToDoItem[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [hideChecked, setHideChecked] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState<StatusOption | null>(null);
+  const [hideChecked, setHideChecked] = useState(() => {
+    // Retrive the hidechecked value from local storage on first render
+    const savedHideChecked = localStorage.getItem("hideChecked");
+    return savedHideChecked ? JSON.parse(savedHideChecked) : false;
+  });
+
+  const [selectedStatus, setSelectedStatus] = useState<StatusOption | null>(() => {
+    // Retrieve the selected status from localStorage on first render
+    const savedStatus = localStorage.getItem('selectedStatus');
+    return savedStatus ? JSON.parse(savedStatus) : null;
+  });
   const [selectedPriority, setSelectedPriority] = useState<PriorityOptions | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<SubjectOptions | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const setHideCheckedAndSave = (hideChecked: boolean) => {
+    setHideChecked(hideChecked);
+     // Save the hideChecked state to localStorage
+  localStorage.setItem('hideChecked', JSON.stringify(hideChecked));
+  }
+
+  const setSelectedStatusAndSave = (selectedStatus: StatusOption | null) => {
+    setSelectedStatus(selectedStatus);
+
+    // Save the selected status to localStorage
+    if (selectedStatus) {
+      localStorage.setItem('selectedStatus', JSON.stringify(selectedStatus));
+    } else {
+      localStorage.removeItem('selectedStatus');
+    }
+  };
 
   // Fetch and display tasks on first render
   useEffect(() => {
@@ -187,12 +213,12 @@ const ToDoList: React.FC = () => {
     <div>
       <div className="filterContainer">
         <label>
-          <input type="checkbox" checked={hideChecked} onChange={() => setHideChecked(!hideChecked)} />
+          <input type="checkbox" checked={hideChecked} onChange={() => setHideCheckedAndSave(!hideChecked)} />
           Hide checked items
         </label>
         <Select
           value={selectedStatus}
-          onChange={setSelectedStatus}
+          onChange={setSelectedStatusAndSave}
           options={statusOptions}
           placeholder="Filter by status"
           isSearchable={false}
