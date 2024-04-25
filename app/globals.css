@@ -160,6 +160,7 @@ main {
 
 .statusSelect {
   margin-left: auto;
+  font-size: 0.8em;
 }
 
 .statusSelect [class$="-indicatorContainer"] > svg {
