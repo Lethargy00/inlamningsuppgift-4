@@ -4,6 +4,7 @@ import { faTrashCan, faPlus, faCircle, faHouse, faBuilding } from "@fortawesome/
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { openDB } from "idb";
 import Select from "react-select";
+import { useRef } from "react";
 
 interface ToDoItem {
   id: number;
@@ -54,6 +55,7 @@ const ToDoList: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<StatusOption | null>(null);
   const [selectedPriority, setSelectedPriority] = useState<PriorityOptions | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<SubjectOptions | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const init = async () => {
@@ -103,6 +105,7 @@ const ToDoList: React.FC = () => {
     } catch (error) {
       console.error("Error adding item:", error);
     }
+    if (inputRef.current) inputRef.current.focus();
   };
 
   const toggleItemChecked = async (id: number) => {
@@ -275,9 +278,11 @@ const ToDoList: React.FC = () => {
             />
           </div>
           <input
+            ref={inputRef}
             type="text"
             placeholder="Input"
             value={inputValue}
+            autoFocus
             onChange={e => setInputValue(e.target.value)}
             onKeyDown={e => {
               if (e.key === "Enter") {
