@@ -10,12 +10,12 @@ interface ToDoItem {
   id: number;
   text: string;
   checked: boolean;
-  status: "pending" | "in-progress" | "completed";
-  priority: "high" | "medium" | "low";
-  subject: "home" | "work";
+  status: string | "pending" | "in-progress" | "completed";
+  priority: string | "high" | "medium" | "low";
+  subject: string | "home" | "work";
 }
 
-interface StatusOption {
+interface  StatusOption {
   value: ToDoItem["status"];
   label: string;
 }
@@ -208,7 +208,11 @@ const ToDoList: React.FC = () => {
               <span className="text-2xl">{item.text}</span>
               <Select
                 value={statusOptions.find(option => option.value === item.status)}
-                onChange={selectedOption => updateStatus(item.id, selectedOption)}
+                onChange={(selectedOption) => {
+                    // Type assertion to ensure selectedOption is of type StatusOption
+                    const statusOption = selectedOption as StatusOption;
+                    updateStatus(item.id, statusOption);
+                }}
                 options={statusOptions}
                 isSearchable={false}
                 className="statusSelect"
