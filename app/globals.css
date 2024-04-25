@@ -27,10 +27,6 @@ src: url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.eot?
   --color-alt-text: #000000;
 }
 
-* input,
-* svg {
-  cursor: pointer;
-}
 
 html {
   background-color: var(--color-bg);
@@ -88,6 +84,11 @@ main {
 .filterSelect {
   display: flex;
 }
+
+.filterSelect [class$="-Svg"] {
+  cursor: pointer;
+}
+
 
 .filterSelect [class$="-indicatorContainer"] > svg {
   color: var(--color-text);
@@ -161,6 +162,10 @@ main {
 .statusSelect {
   margin-left: auto;
   font-size: 0.8em;
+}
+
+.statusSelect [class$="-Svg"] {
+  cursor: pointer;
 }
 
 .statusSelect [class$="-indicatorContainer"] > svg {
@@ -240,6 +245,7 @@ main {
 input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
+  cursor: pointer;
   width: 25px;
   height: 25px;
   border: 3px solid #ffffff;
