@@ -212,7 +212,7 @@ const ToDoList: React.FC = () => {
                 isSearchable={false}
                 className="statusSelect"
               />
-              <button onClick={() => removeItem(item.id)} className="hover:text-red-500 text-xl">
+              <button onClick={() => removeItem(item.id)}>
                 <FontAwesomeIcon icon={faTrashCan} />
               </button>
             </div>
