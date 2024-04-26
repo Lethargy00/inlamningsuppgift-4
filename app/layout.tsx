@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "To Do List",
+  title: "Just ToDo It!",
   description: "A simple to do list that stores in indexedDB",
 };
 
