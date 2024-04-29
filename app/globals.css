@@ -155,6 +155,11 @@ main {
   color: #ff5757;
 }
 
+.itemPrioTitle,
+.itemSubTitle {
+  color: #c9c9c9;
+}
+
 .itemDetails {
   display: flex;
   justify-content: space-between;
