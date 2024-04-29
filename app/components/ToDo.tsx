@@ -1,5 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faCircle, faHouse, faBuilding } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faCircle,
+  faHouse,
+  faBuilding,
+} from "@fortawesome/free-solid-svg-icons";
 import { StatusOption, ToDoItem } from "../models";
 import Select from "react-select";
 import { statusOptions } from "../SD/SD";
@@ -11,15 +16,26 @@ type ToDoProps = {
   onRemoveItem: (id: number) => void;
 };
 
-export default function ToDo({ item, toggleItemChecked, onUpdateStatus, onRemoveItem }: ToDoProps) {
+export default function ToDo({
+  item,
+  toggleItemChecked,
+  onUpdateStatus,
+  onRemoveItem,
+}: ToDoProps) {
   return (
     <li key={item.id.toString()} className="listItem">
       <div className="itemContent">
-        <input type="checkbox" checked={item.checked} onChange={() => toggleItemChecked(item.id)} />
+        <input
+          title="Check Item"
+          type="checkbox"
+          checked={item.checked}
+          onChange={() => toggleItemChecked(item.id)}
+        />
         <span className="text-2xl">{item.text}</span>
         <Select
-          value={statusOptions.find(option => option.value === item.status)}
-          onChange={selectedOption => {
+          aria-label="Select what status"
+          value={statusOptions.find((option) => option.value === item.status)}
+          onChange={(selectedOption) => {
             // Type assertion to ensure selectedOption is of type StatusOption
             const statusOption = selectedOption as StatusOption;
             onUpdateStatus(item.id, statusOption);
@@ -28,12 +44,12 @@ export default function ToDo({ item, toggleItemChecked, onUpdateStatus, onRemove
           isSearchable={false}
           className="statusSelect"
         />
-        <button onClick={() => onRemoveItem(item.id)}>
+        <button title="Remove" onClick={() => onRemoveItem(item.id)}>
           <FontAwesomeIcon icon={faTrashCan} />
         </button>
       </div>
       <div className="itemDetails">
-        <p className="capitalize opacity-40 text-xs">
+        <p className="capitalize itemSubTitle text-xs">
           {item.subject === "home" && (
             <span className="me-2">
               <FontAwesomeIcon icon={faHouse} />
@@ -48,7 +64,7 @@ export default function ToDo({ item, toggleItemChecked, onUpdateStatus, onRemove
         </p>
 
         <p className="capitalize text-xs">
-          <span className="opacity-40 me-1">{item.priority}</span>
+          <span className="itemPrioTitle me-1">{item.priority}</span>
           {item.priority === "high" && (
             <span className="text-red-500">
               <FontAwesomeIcon icon={faCircle} />

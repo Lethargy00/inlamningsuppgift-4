@@ -21,7 +21,14 @@ const SetTheme = () => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    return <button onClick={toggleTheme} className='themeButton'><FontAwesomeIcon icon={ theme === 'light' ? faSun : faMoon }/></button>
+    return  <>       
+        <button 
+            title= { theme === 'light' ? 'Light Mode' : 'Dark Mode' }
+            onClick={toggleTheme} 
+            className='themeButton'>
+            <FontAwesomeIcon icon={ theme === 'light' ? faSun : faMoon }/>
+        </button>
+    </>
 };
 
 export default SetTheme;
