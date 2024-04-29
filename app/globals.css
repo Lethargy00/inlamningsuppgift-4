@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 @font-face {
-font-family: 'Font Awesome 5 Free';
-font-style: normal;
-font-weight: 900;
-src: url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.eot');
-src: url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype'),
-      url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.woff2') format('woff2'),
-      url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.woff') format('woff'),
-      url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.ttf') format('truetype'),
-      url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.svg#fontawesome') format('svg');
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  src: url("https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.eot");
+  src: url("https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+    url("https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.woff2") format("woff2"),
+    url("https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.woff") format("woff"),
+    url("https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.ttf") format("truetype"),
+    url("https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.svg#fontawesome") format("svg");
 }
 
 :root {
@@ -26,7 +26,6 @@ src: url('https://use.fontawesome.com/releases/v5.7.2/webfonts/fa-solid-900.eot?
   --color-text: #ffffff;
   --color-alt-text: #000000;
 }
-
 
 html {
   background-color: var(--color-bg);
@@ -69,6 +68,7 @@ main {
   height: 55px;
   gap: 15px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .filterContainer > label {
@@ -91,7 +91,6 @@ main {
 .filterSelect [class$="-Svg"] {
   cursor: pointer;
 }
-
 
 .filterSelect [class$="-indicatorContainer"] > svg {
   color: var(--color-text);
@@ -245,7 +244,6 @@ main {
   background-color: var(--color-bg);
 }
 
-
 input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
@@ -270,7 +268,7 @@ input[type="checkbox"]:checked::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 12px;
-  color:#93ff78;
+  color: #93ff78;
   position: absolute;
   left: 50%;
   top: 50%;
