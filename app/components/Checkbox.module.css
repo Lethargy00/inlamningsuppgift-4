@@ -1,0 +1,27 @@
+.checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    position: relative;
+}
+
+.checkbox:hover,
+.checkbox:checked {
+    border-color: #93ff78;
+}
+
+.checkbox:checked::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    color: #93ff78;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

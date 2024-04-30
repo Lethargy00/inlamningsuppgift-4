@@ -46,27 +46,6 @@ main {
   background-color: var(--color-alt-bg);
 }
 
-.filterContainer {
-  display: flex;
-  margin-top: 15px;
-  height: 55px;
-  gap: 15px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.filterContainer > label {
-  display: flex;
-  user-select: none;
-  gap: 10px;
-  background-color: var(--color-bg);
-  border: 15px solid var(--color-bg);
-  border-radius: 15px;
-}
-
-.filterContainer > label:hover {
-  cursor: pointer;
-}
 
 .filterSelect {
   display: flex;
@@ -238,7 +217,7 @@ main {
   background-color: var(--color-bg);
 }
 
-input[type="checkbox"] {
+/* input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
@@ -267,4 +246,4 @@ input[type="checkbox"]:checked::after {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-}
+} */

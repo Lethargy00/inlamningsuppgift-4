@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    margin-top: 15px;
+    height: 55px;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container > label {
+    display: flex;
+    user-select: none;
+    gap: 10px;
+    background-color: var(--color-bg);
+    border: 15px solid var(--color-bg);
+    border-radius: 15px;
+}
+
+.container > label:hover {
+    cursor: pointer;
+}

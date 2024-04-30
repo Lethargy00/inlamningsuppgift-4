@@ -18,8 +18,11 @@ import {
   SubjectOption,
 } from "../interfaces/SelectOption";
 import SearchBar from "./SearchBar";
+import Checkbox from "./Checkbox";
+import Filter from "./filter/Filter";
 import AddTodo from "./addTodo/AddTodo";
 import AddTodoInput from "./addTodo/addTodoInput/addTodoInput";
+
 
 const Todos = React.lazy(() => import("./todos/Todos"));
 
@@ -284,20 +287,16 @@ const ToDoList: React.FC = () => {
 
   return (
     <>
-      <div className="filterContainer">
-        <label>
-          <input
-            type="checkbox"
-            checked={hideChecked}
-            onChange={() => setHideCheckedAndSave(!hideChecked)}
-          />
-          Hide checked items
-        </label>
-        <div className="inputFieldContainer">
-          <div className="flex gap-3 inputField">
-            <SearchBar query={query} onQuery={setQuery} />
-          </div>
-        </div>
+
+      <Filter>
+        <Checkbox
+          hideChecked={hideChecked}
+          setHideChecked={() => setHideCheckedAndSave(!hideChecked)}
+        />
+
+        <SearchBar query={query} onQuery={setQuery} />
+
+
         {/* Buttons to sort todos from A to Z and from Z to A */}
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-4 ">
@@ -317,7 +316,9 @@ const ToDoList: React.FC = () => {
             </button>
           </div>
         </div>
-        <Select
+
+
+                <Select
           aria-label="Filter by status"
           value={selectedStatus}
           onChange={setSelectedStatusAndSave}
@@ -327,7 +328,7 @@ const ToDoList: React.FC = () => {
           isClearable
           className="filterSelect"
         />
-      </div>
+      </Filter>
 
       <Suspense fallback={<div>Loading...</div>}>
         <Todos
