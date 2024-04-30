@@ -91,6 +91,9 @@
     background-color: var(--color-bg);
 }
 
+.select [class$="-indicatorSeparator"] {
+    background-color: var(--color-text);
+}
 .button:hover {
     color: #ff5757;
 }

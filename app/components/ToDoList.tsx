@@ -287,43 +287,34 @@ const ToDoList: React.FC = () => {
   return (
     <>
       <Filter>
-        <Checkbox
-          hideChecked={hideChecked}
-          setHideChecked={() => setHideCheckedAndSave(!hideChecked)}
-        />
+        <section className="section">
+          <Checkbox
+            hideChecked={hideChecked}
+            setHideChecked={() => setHideCheckedAndSave(!hideChecked)}
+          />
 
-        <SearchBar query={query} onQuery={setQuery} />
-
-        {/* Buttons to sort todos from A to Z and from Z to A */}
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4 ">
-            <button
-              type="button"
-              onClick={sortAZ}
-              className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
-            >
+          <div className="sortContainer">
+            <button type="button" onClick={sortAZ} className="sortButton">
               <FontAwesomeIcon icon={faArrowDownAZ} />
             </button>
-            <button
-              type="button"
-              onClick={sortZA}
-              className="px-3 py-2 rounded-[15px] bg-[#dac0a3]"
-            >
+            <button type="button" onClick={sortZA} className="sortButton">
               <FontAwesomeIcon icon={faArrowUpZA} />
             </button>
           </div>
-        </div>
-
-        <Select
-          aria-label="Filter by status"
-          value={selectedStatus}
-          onChange={setSelectedStatusAndSave}
-          options={statusOptions}
-          placeholder="Filter by status"
-          isSearchable={false}
-          isClearable
-          className="filterSelect"
-        />
+        </section>
+        <section className="section">
+          <SearchBar query={query} onQuery={setQuery} />
+          <Select
+            aria-label="Filter by status"
+            value={selectedStatus}
+            onChange={setSelectedStatusAndSave}
+            options={statusOptions}
+            placeholder="Filter by status"
+            isSearchable={false}
+            isClearable
+            className="filterSelect"
+          />
+        </section>
       </Filter>
 
       <Suspense fallback={<div>Loading...</div>}>
