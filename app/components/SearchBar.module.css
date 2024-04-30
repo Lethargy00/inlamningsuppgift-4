@@ -1,0 +1,27 @@
+.inputContainer {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.textInput {
+    outline: none;
+    color: var(--color-text);
+    border: 15px solid var(--color-bg);
+    border-radius: 15px;
+    background-color: var(--color-bg);
+    padding-right: 30px;
+}
+
+.clearButton {
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.clearButton:hover {
+    color: #ff5757;
+}

@@ -1,10 +1,11 @@
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./Header.module.css";
-import SetTheme from "../SetTheme";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-const Header = () => {
+type HeaderProps = {};
+
+const Header: React.FC<PropsWithChildren<HeaderProps>> = ({ children }) => {
   return (
     <div className={style.container}>
       <h1 className={style.textContainer}>
@@ -13,7 +14,7 @@ const Header = () => {
         </span>
         <span className={style.text}>Just ToDo It!</span>
       </h1>
-      <SetTheme />
+      {children}
     </div>
   );
 };

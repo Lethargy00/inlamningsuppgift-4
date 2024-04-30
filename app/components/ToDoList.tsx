@@ -17,6 +17,8 @@ import {
   SubjectOption,
 } from "../interfaces/SelectOption";
 import SearchBar from "./SearchBar";
+import Checkbox from "./Checkbox";
+import Filter from "./filter/Filter";
 
 const ItemList = React.lazy(() => import("./ItemList"));
 
@@ -268,20 +270,14 @@ const ToDoList: React.FC = () => {
 
   return (
     <>
-      <div className="filterContainer">
-        <label>
-          <input
-            type="checkbox"
-            checked={hideChecked}
-            onChange={() => setHideCheckedAndSave(!hideChecked)}
-          />
-          Hide checked items
-        </label>
-        <div className="inputFieldContainer">
-          <div className="flex gap-3 inputField">
-            <SearchBar query={query} onQuery={setQuery} />
-          </div>
-        </div>
+      <Filter>
+        <Checkbox
+          hideChecked={hideChecked}
+          setHideChecked={() => setHideCheckedAndSave(!hideChecked)}
+        />
+
+        <SearchBar query={query} onQuery={setQuery} />
+
         <Select
           aria-label="Filter by status"
           value={selectedStatus}
@@ -292,7 +288,7 @@ const ToDoList: React.FC = () => {
           isClearable
           className="filterSelect"
         />
-      </div>
+      </Filter>
       <Suspense fallback={<div>Loading...</div>}>
         <ItemList
           listItems={filteredByStatus}
