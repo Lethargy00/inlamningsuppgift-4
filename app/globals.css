@@ -175,7 +175,7 @@ main {
 .inputFieldContainer {
   display: flex;
   height: 100px;
-  align-items: center;
+  align-items: start;
 }
 
 .inputFieldContainer > button {
@@ -196,6 +196,11 @@ main {
   flex-direction: column;
   flex-grow: 1;
   gap: 15px;
+  outline: none;
+  color: var(--color-text);
+  border: 15px solid var(--color-bg);
+  border-radius: 15px;
+  background-color: var(--color-bg);
 }
 
 .inputField > div:first-child {

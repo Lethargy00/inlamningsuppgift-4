@@ -1,15 +1,16 @@
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
-import { faPlus, faX } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { openDB } from "idb";
 import Select from "react-select";
 import { useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDownAZ, faArrowUpZA } from "@fortawesome/free-solid-svg-icons";
 import {
   statusOptions,
   priorityOptions,
   subjectOptions,
 } from "../constants/statusOptions";
+
 import { ToDoItem } from "../interfaces/ToDoItem";
 import {
   PriorityOption,
@@ -19,8 +20,11 @@ import {
 import SearchBar from "./SearchBar";
 import Checkbox from "./Checkbox";
 import Filter from "./filter/Filter";
+import AddTodo from "./addTodo/AddTodo";
+import AddTodoInput from "./addTodo/addTodoInput/addTodoInput";
 
-const ItemList = React.lazy(() => import("./ItemList"));
+
+const Todos = React.lazy(() => import("./todos/Todos"));
 
 // Main component for the ToDo list.
 const ToDoList: React.FC = () => {
@@ -46,6 +50,19 @@ const ToDoList: React.FC = () => {
   );
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Filter by Name
+  // Add sorting functions to sort the list of todos
+  // Local Compare is built in function to sort the list alphabetically.
+  const sortAZ = () => {
+    const sorted = [...list].sort((a, b) => a.text.localeCompare(b.text));
+    setList(sorted);
+  };
+
+  const sortZA = () => {
+    const sorted = [...list].sort((a, b) => b.text.localeCompare(a.text));
+    setList(sorted);
+  };
 
   // Function to toggle the hideChecked state an save it to localStorage.
   const setHideCheckedAndSave = (hideChecked: boolean) => {
@@ -270,6 +287,7 @@ const ToDoList: React.FC = () => {
 
   return (
     <>
+
       <Filter>
         <Checkbox
           hideChecked={hideChecked}
@@ -278,7 +296,29 @@ const ToDoList: React.FC = () => {
 
         <SearchBar query={query} onQuery={setQuery} />
 
-        <Select
+
+        {/* Buttons to sort todos from A to Z and from Z to A */}
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4 ">
+            <button
+              type="button"
+              onClick={sortAZ}
+              className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+            >
+              <FontAwesomeIcon icon={faArrowDownAZ} />
+            </button>
+            <button
+              type="button"
+              onClick={sortZA}
+              className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+            >
+              <FontAwesomeIcon icon={faArrowUpZA} />
+            </button>
+          </div>
+        </div>
+
+
+                <Select
           aria-label="Filter by status"
           value={selectedStatus}
           onChange={setSelectedStatusAndSave}
@@ -289,8 +329,9 @@ const ToDoList: React.FC = () => {
           className="filterSelect"
         />
       </Filter>
+
       <Suspense fallback={<div>Loading...</div>}>
-        <ItemList
+        <Todos
           listItems={filteredByStatus}
           toggleItemChecked={toggleItemChecked}
           onUpdateStatus={updateStatus}
@@ -298,48 +339,36 @@ const ToDoList: React.FC = () => {
         />
       </Suspense>
 
-      <div className="inputFieldContainer">
-        <div className="inputField">
-          <div>
-            <Select
-              aria-label="Select what priority"
-              value={selectedPriority}
-              onChange={setSelectedPriority}
-              options={priorityOptions}
-              placeholder="Select Priority"
-              isSearchable={false}
-              isClearable
-              className="filterSelect"
-            />
-            <Select
-              aria-label="Select what subject"
-              value={selectedSubject}
-              onChange={setSelectedSubject}
-              options={subjectOptions}
-              placeholder="Select Subject"
-              isSearchable={false}
-              isClearable
-              className="filterSelect"
-            />
-          </div>
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Task description..."
-            value={inputValue}
-            autoFocus
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                addItem();
-              }
-            }}
+      <AddTodo>
+        <div className="flex gap-4">
+          <Select
+            aria-label="Select what priority"
+            value={selectedPriority}
+            onChange={setSelectedPriority}
+            options={priorityOptions}
+            placeholder="Select Priority"
+            isSearchable={false}
+            isClearable
+            className="filterSelect"
+          />
+          <Select
+            aria-label="Select what subject"
+            value={selectedSubject}
+            onChange={setSelectedSubject}
+            options={subjectOptions}
+            placeholder="Select Subject"
+            isSearchable={false}
+            isClearable
+            className="filterSelect"
           />
         </div>
-        <button title="Add Item" type="button" onClick={addItem}>
-          <FontAwesomeIcon icon={faPlus} />
-        </button>
-      </div>
+        <AddTodoInput
+          inputValue={inputValue}
+          inputRef={inputRef}
+          addItem={addItem}
+          setInputValue={setInputValue}
+        />
+      </AddTodo>
     </>
   );
 };

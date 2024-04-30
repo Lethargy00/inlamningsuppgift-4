@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 const SetTheme = () => {
   // Retrieve the theme from local storage or default to 'light'
   const [theme, setTheme] = useState(() => {
