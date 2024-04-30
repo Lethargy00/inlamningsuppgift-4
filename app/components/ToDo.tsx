@@ -5,9 +5,10 @@ import {
   faHouse,
   faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
-import { StatusOption, ToDoItem } from "../models";
+import { ToDoItem } from "../interfaces/ToDoItem";
 import Select from "react-select";
-import { statusOptions } from "../SD/SD";
+import { statusOptions } from "../constants/statusOptions";
+import { StatusOption } from "../interfaces/SelectOption";
 
 type ToDoProps = {
   item: ToDoItem;

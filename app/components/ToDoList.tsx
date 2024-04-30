@@ -6,12 +6,16 @@ import { openDB } from "idb";
 import Select from "react-select";
 import { useRef } from "react";
 import {
-  ToDoItem,
+  statusOptions,
+  priorityOptions,
+  subjectOptions,
+} from "../constants/statusOptions";
+import { ToDoItem } from "../interfaces/ToDoItem";
+import {
+  PriorityOption,
   StatusOption,
-  PriorityOptions,
-  SubjectOptions,
-} from "../models";
-import { statusOptions, priorityOptions, subjectOptions } from "../SD/SD";
+  SubjectOption,
+} from "../interfaces/SelectOption";
 
 const ItemList = React.lazy(() => import("./ItemList"));
 
@@ -33,8 +37,8 @@ const ToDoList: React.FC = () => {
     }
   );
   const [selectedPriority, setSelectedPriority] =
-    useState<PriorityOptions | null>(null);
-  const [selectedSubject, setSelectedSubject] = useState<SubjectOptions | null>(
+    useState<PriorityOption | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<SubjectOption | null>(
     null
   );
   const [query, setQuery] = useState("");

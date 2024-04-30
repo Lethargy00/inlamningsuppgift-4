@@ -46,22 +46,6 @@ main {
   background-color: var(--color-alt-bg);
 }
 
-.listHeader {
-  font-size: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.listHeader > h1 {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.themeButton {
-  align-content: center;
-}
-
 .filterContainer {
   display: flex;
   margin-top: 15px;

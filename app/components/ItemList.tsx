@@ -1,4 +1,5 @@
-import { StatusOption, ToDoItem } from "../models";
+import { StatusOption } from "../interfaces/SelectOption";
+import { ToDoItem } from "../interfaces/ToDoItem";
 import ToDo from "./ToDo";
 
 type ItemListProps = {
@@ -8,10 +9,15 @@ type ItemListProps = {
   onRemoveItem: (id: number) => void;
 };
 
-export default function ItemList({ listItems, toggleItemChecked, onUpdateStatus, onRemoveItem }: ItemListProps) {
+export default function ItemList({
+  listItems,
+  toggleItemChecked,
+  onUpdateStatus,
+  onRemoveItem,
+}: ItemListProps) {
   return (
     <ul className="itemContainer">
-      {listItems.map(item => (
+      {listItems.map((item) => (
         <ToDo
           key={item.id.toString()}
           item={item}
