@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { openDB } from "idb";
 import Select from "react-select";
 import { useRef } from "react";
+
+import { faArrowDownAZ, faArrowUpZA } from "@fortawesome/free-solid-svg-icons";
 import {
   statusOptions,
   priorityOptions,
@@ -17,6 +19,7 @@ import {
   SubjectOption,
 } from "../interfaces/SelectOption";
 import SearchBar from "./SearchBar";
+
 
 const ItemList = React.lazy(() => import("./ItemList"));
 
@@ -44,6 +47,19 @@ const ToDoList: React.FC = () => {
   );
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Filter by Name
+  // Add sorting functions to sort the list of todos 
+  // Local Compare is built in function to sort the list alphabetically.
+   const sortAZ = () => {
+    const sorted = [...list].sort((a, b) => a.text.localeCompare(b.text));
+    setList(sorted);
+  };
+
+  const sortZA = () => {
+    const sorted = [...list].sort((a, b) => b.text.localeCompare(a.text));
+    setList(sorted);
+  };
 
   // Function to toggle the hideChecked state an save it to localStorage.
   const setHideCheckedAndSave = (hideChecked: boolean) => {
@@ -293,6 +309,7 @@ const ToDoList: React.FC = () => {
           className="filterSelect"
         />
       </div>
+
       <Suspense fallback={<div>Loading...</div>}>
         <ItemList
           listItems={filteredByStatus}
@@ -301,6 +318,7 @@ const ToDoList: React.FC = () => {
           onRemoveItem={removeItem}
         />
       </Suspense>
+
 
       <div className="inputFieldContainer">
         <div className="inputField">
@@ -325,6 +343,25 @@ const ToDoList: React.FC = () => {
               isClearable
               className="filterSelect"
             />
+            {/* Buttons to sort todos from A to Z and from Z to A */}
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-4 ">
+                <button
+                  type="button"
+                  onClick={sortAZ}
+                  className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+                >
+                  <FontAwesomeIcon icon={faArrowDownAZ} />
+                </button>
+                <button
+                  type="button"
+                  onClick={sortZA}
+                  className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+                >
+                  <FontAwesomeIcon icon={faArrowUpZA} />
+                </button>
+              </div>
+            </div>
           </div>
           <input
             ref={inputRef}
