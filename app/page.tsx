@@ -3,6 +3,7 @@ import SetTheme from "./components/SetTheme";
 import ToDoList from "./components/ToDoList";
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
 
+
 export default function Home() {
   return (
     <main>
@@ -15,6 +16,7 @@ export default function Home() {
         </h1>
         <SetTheme />
       </div>
+      
       <ToDoList />
     </main>
   );
