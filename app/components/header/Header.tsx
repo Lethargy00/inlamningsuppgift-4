@@ -7,7 +7,7 @@ type HeaderProps = {};
 
 const Header: React.FC<PropsWithChildren<HeaderProps>> = ({ children }) => {
   return (
-    <div className={style.container}>
+    <header className={style.container}>
       <h1 className={style.textContainer}>
         <span className={style.icon}>
           <FontAwesomeIcon icon={faBolt} />
@@ -15,7 +15,7 @@ const Header: React.FC<PropsWithChildren<HeaderProps>> = ({ children }) => {
         <span className={style.text}>Just ToDo It!</span>
       </h1>
       {children}
-    </div>
+    </header>
   );
 };
 

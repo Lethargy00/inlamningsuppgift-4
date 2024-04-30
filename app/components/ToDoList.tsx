@@ -23,7 +23,6 @@ import Filter from "./filter/Filter";
 import AddTodo from "./addTodo/AddTodo";
 import AddTodoInput from "./addTodo/addTodoInput/addTodoInput";
 
-
 const Todos = React.lazy(() => import("./todos/Todos"));
 
 // Main component for the ToDo list.
@@ -287,7 +286,6 @@ const ToDoList: React.FC = () => {
 
   return (
     <>
-
       <Filter>
         <Checkbox
           hideChecked={hideChecked}
@@ -295,7 +293,6 @@ const ToDoList: React.FC = () => {
         />
 
         <SearchBar query={query} onQuery={setQuery} />
-
 
         {/* Buttons to sort todos from A to Z and from Z to A */}
         <div className="flex justify-between items-center">
@@ -310,15 +307,14 @@ const ToDoList: React.FC = () => {
             <button
               type="button"
               onClick={sortZA}
-              className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+              className="px-3 py-2 rounded-[15px] bg-[#dac0a3]"
             >
               <FontAwesomeIcon icon={faArrowUpZA} />
             </button>
           </div>
         </div>
 
-
-                <Select
+        <Select
           aria-label="Filter by status"
           value={selectedStatus}
           onChange={setSelectedStatusAndSave}
