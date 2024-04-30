@@ -5,6 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { openDB } from "idb";
 import Select from "react-select";
 import { useRef } from "react";
+import { faArrowDownAZ, faArrowUpZA } from "@fortawesome/free-solid-svg-icons";
+
+
+
 
 // Define the structure of a ToDo item.
 interface ToDoItem {
@@ -64,6 +68,19 @@ const ToDoList: React.FC = () => {
   const [selectedPriority, setSelectedPriority] = useState<PriorityOptions | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<SubjectOptions | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Filter by Name
+  // Add sorting functions to sort the list of todos 
+  // Local Compare is built in function to sort the list alphabetically.
+   const sortAZ = () => {
+    const sorted = [...list].sort((a, b) => a.text.localeCompare(b.text));
+    setList(sorted);
+  };
+
+  const sortZA = () => {
+    const sorted = [...list].sort((a, b) => b.text.localeCompare(a.text));
+    setList(sorted);
+  };
 
   // Function to toggle the hideChecked state an save it to localStorage.
   const setHideCheckedAndSave = (hideChecked: boolean) => {
@@ -248,7 +265,11 @@ const ToDoList: React.FC = () => {
     <>
       <div className="filterContainer">
         <label>
-          <input type="checkbox" checked={hideChecked} onChange={() => setHideCheckedAndSave(!hideChecked)} />
+          <input
+            type="checkbox"
+            checked={hideChecked}
+            onChange={() => setHideCheckedAndSave(!hideChecked)}
+          />
           Hide checked items
         </label>
         <Select
@@ -261,18 +282,25 @@ const ToDoList: React.FC = () => {
           className="filterSelect"
         />
       </div>
+
       <ul className="itemContainer">
-        {filteredByStatus.map(item => (
+        {filteredByStatus.map((item) => (
           <li key={item.id.toString()} className="listItem">
             <div className="itemContent">
-              <input type="checkbox" checked={item.checked} onChange={() => toggleItemChecked(item.id)} />
+              <input
+                type="checkbox"
+                checked={item.checked}
+                onChange={() => toggleItemChecked(item.id)}
+              />
               <span className="text-2xl">{item.text}</span>
               <Select
-                value={statusOptions.find(option => option.value === item.status)}
+                value={statusOptions.find(
+                  (option) => option.value === item.status
+                )}
                 onChange={(selectedOption) => {
-                    // Type assertion to ensure selectedOption is of type StatusOption
-                    const statusOption = selectedOption as StatusOption;
-                    updateStatus(item.id, statusOption);
+                  // Type assertion to ensure selectedOption is of type StatusOption
+                  const statusOption = selectedOption as StatusOption;
+                  updateStatus(item.id, statusOption);
                 }}
                 options={statusOptions}
                 isSearchable={false}
@@ -321,6 +349,7 @@ const ToDoList: React.FC = () => {
           </li>
         ))}
       </ul>
+
       <div className="inputFieldContainer">
         <div className="inputField">
           <div>
@@ -342,6 +371,25 @@ const ToDoList: React.FC = () => {
               isClearable
               className="filterSelect"
             />
+            {/* Buttons to sort todos from A to Z and from Z to A */}
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-4 ">
+                <button
+                  type="button"
+                  onClick={sortAZ}
+                  className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+                >
+                  <FontAwesomeIcon icon={faArrowDownAZ} />
+                </button>
+                <button
+                  type="button"
+                  onClick={sortZA}
+                  className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+                >
+                  <FontAwesomeIcon icon={faArrowUpZA} />
+                </button>
+              </div>
+            </div>
           </div>
           <input
             ref={inputRef}
@@ -349,8 +397,8 @@ const ToDoList: React.FC = () => {
             placeholder="Task description..."
             value={inputValue}
             autoFocus
-            onChange={e => setInputValue(e.target.value)}
-            onKeyDown={e => {
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => {
               if (e.key === "Enter") {
                 addItem();
               }
