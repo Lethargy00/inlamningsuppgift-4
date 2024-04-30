@@ -34,18 +34,22 @@ html {
   justify-content: center;
 }
 
-main {
+body {
   display: flex;
   flex-direction: column;
   margin-top: 25px;
   max-width: 800px;
   width: 90vw;
-  height: 80vh;
   border: 15px solid var(--color-alt-bg);
   border-radius: 15px;
   background-color: var(--color-alt-bg);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  height: 72vh;
+}
 
 .filterSelect {
   display: flex;
@@ -88,88 +92,6 @@ main {
 
 .filterSelect [class$="-option"]:hover {
   background-color: var(--color-alt-bg);
-}
-
-.itemContainer {
-  display: flex;
-  flex-direction: column;
-  overflow-x: auto;
-  flex-grow: 1;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  gap: 15px;
-}
-
-.listItem {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-bg);
-  border: 15px solid var(--color-bg);
-  border-radius: 15px;
-}
-
-.itemContent {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.itemContent > button:hover {
-  color: #ff5757;
-}
-
-.itemPrioTitle,
-.itemSubTitle {
-  color: #c9c9c9;
-}
-
-.itemDetails {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-.statusSelect {
-  margin-left: auto;
-  font-size: 0.8em;
-}
-
-.statusSelect [class$="-Svg"] {
-  cursor: pointer;
-}
-
-.statusSelect [class$="-indicatorContainer"] > svg {
-  color: var(--color-text);
-}
-
-.statusSelect [class$="-singleValue"] {
-  color: var(--color-text);
-}
-
-.statusSelect [class$="-placeholder"] {
-  color: var(--color-text);
-}
-
-.statusSelect [class$="-control"] {
-  background-color: var(--color-alt-bg);
-  border: none;
-}
-
-.statusSelect [class$="-menu"] {
-  background-color: var(--color-alt-bg);
-}
-
-.statusSelect [class$="-value-container"] {
-  background-color: var(--color-bg);
-}
-
-.statusSelect [class$="-option"] {
-  color: var(--color-text);
-  background-color: var(--color-alt-bg);
-}
-
-.statusSelect [class$="-option"]:hover {
-  background-color: var(--color-bg);
 }
 
 .inputFieldContainer {
