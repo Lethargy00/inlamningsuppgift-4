@@ -15,8 +15,7 @@
 
 .clearButton {
     position: absolute;
-    right: 0;
-    margin-right: 15px;
+    right: 15px;
     border: none;
     background-color: transparent;
     cursor: pointer;
