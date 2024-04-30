@@ -1,14 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrashCan,
-  faCircle,
-  faHouse,
-  faBuilding,
-} from "@fortawesome/free-solid-svg-icons";
-import { ToDoItem } from "../interfaces/ToDoItem";
+import { faTrashCan, faCircle, faHouse, faBuilding } from "@fortawesome/free-solid-svg-icons";
+import { ToDoItem } from "../../../interfaces/ToDoItem";
 import Select from "react-select";
-import { statusOptions } from "../constants/statusOptions";
-import { StatusOption } from "../interfaces/SelectOption";
+import { statusOptions } from "../../../constants/statusOptions";
+import { StatusOption } from "../../../interfaces/SelectOption";
 
 type ToDoProps = {
   item: ToDoItem;
@@ -17,26 +12,16 @@ type ToDoProps = {
   onRemoveItem: (id: number) => void;
 };
 
-export default function ToDo({
-  item,
-  toggleItemChecked,
-  onUpdateStatus,
-  onRemoveItem,
-}: ToDoProps) {
+export default function Todo({ item, toggleItemChecked, onUpdateStatus, onRemoveItem }: ToDoProps) {
   return (
     <li key={item.id.toString()} className="listItem">
       <div className="itemContent">
-        <input
-          title="Check Item"
-          type="checkbox"
-          checked={item.checked}
-          onChange={() => toggleItemChecked(item.id)}
-        />
+        <input title="Check Item" type="checkbox" checked={item.checked} onChange={() => toggleItemChecked(item.id)} />
         <span className="text-2xl">{item.text}</span>
         <Select
           aria-label="Select what status"
-          value={statusOptions.find((option) => option.value === item.status)}
-          onChange={(selectedOption) => {
+          value={statusOptions.find(option => option.value === item.status)}
+          onChange={selectedOption => {
             // Type assertion to ensure selectedOption is of type StatusOption
             const statusOption = selectedOption as StatusOption;
             onUpdateStatus(item.id, statusOption);

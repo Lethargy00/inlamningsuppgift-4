@@ -1,24 +1,16 @@
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
-import { faPlus, faX } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { openDB } from "idb";
 import Select from "react-select";
 import { useRef } from "react";
-import {
-  statusOptions,
-  priorityOptions,
-  subjectOptions,
-} from "../constants/statusOptions";
+import { statusOptions, priorityOptions, subjectOptions } from "../constants/statusOptions";
 import { ToDoItem } from "../interfaces/ToDoItem";
-import {
-  PriorityOption,
-  StatusOption,
-  SubjectOption,
-} from "../interfaces/SelectOption";
+import { PriorityOption, StatusOption, SubjectOption } from "../interfaces/SelectOption";
 import SearchBar from "./SearchBar";
+import AddTodo from "./addTodo/AddTodo";
+import AddTodoInput from "./addTodo/addTodoInput/addTodoInput";
 
-const ItemList = React.lazy(() => import("./ItemList"));
+const Todos = React.lazy(() => import("./todos/Todos"));
 
 // Main component for the ToDo list.
 const ToDoList: React.FC = () => {
@@ -30,18 +22,13 @@ const ToDoList: React.FC = () => {
     return savedHideChecked ? JSON.parse(savedHideChecked) : false;
   });
 
-  const [selectedStatus, setSelectedStatus] = useState<StatusOption | null>(
-    () => {
-      // Retrieve the selected status from localStorage on first render.
-      const savedStatus = localStorage.getItem("selectedStatus");
-      return savedStatus ? JSON.parse(savedStatus) : null;
-    }
-  );
-  const [selectedPriority, setSelectedPriority] =
-    useState<PriorityOption | null>(null);
-  const [selectedSubject, setSelectedSubject] = useState<SubjectOption | null>(
-    null
-  );
+  const [selectedStatus, setSelectedStatus] = useState<StatusOption | null>(() => {
+    // Retrieve the selected status from localStorage on first render.
+    const savedStatus = localStorage.getItem("selectedStatus");
+    return savedStatus ? JSON.parse(savedStatus) : null;
+  });
+  const [selectedPriority, setSelectedPriority] = useState<PriorityOption | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<SubjectOption | null>(null);
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -115,12 +102,12 @@ const ToDoList: React.FC = () => {
 
       // Handle the promise returned by the add operation.
       request
-        .then(async (id) => {
+        .then(async id => {
           // Once the item is added, update the state with the new item including its ID.
           const completeItem: ToDoItem = { ...newItem, id: id as number };
           setList([...list, completeItem]);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error adding item:", error);
         });
 
@@ -142,7 +129,7 @@ const ToDoList: React.FC = () => {
       const transaction = db.transaction("todos", "readwrite");
       const objectStore = transaction.objectStore("todos");
       // Find the item by ID.
-      const item = list.find((item) => item.id === id);
+      const item = list.find(item => item.id === id);
 
       if (item) {
         // Toggle the checked status of the item.
@@ -177,7 +164,7 @@ const ToDoList: React.FC = () => {
       const transaction = db.transaction("todos", "readwrite");
       const objectStore = transaction.objectStore("todos");
       // Find the item by ID
-      const item = list.find((item) => item.id === id);
+      const item = list.find(item => item.id === id);
 
       if (item) {
         // Update the status of the item.
@@ -213,7 +200,7 @@ const ToDoList: React.FC = () => {
 
       // Update the UI After the transaction completes.
       transaction.oncomplete = () => {
-        const newList = list.filter((item) => item.id !== id);
+        const newList = list.filter(item => item.id !== id);
         setList(newList);
       };
     } catch (error) {
@@ -242,9 +229,7 @@ const ToDoList: React.FC = () => {
 
           // Filter the todos based on the query.
           if (query.length > 0) {
-            todos = todos.filter((item) =>
-              item.text.toLowerCase().includes(query.toLowerCase())
-            );
+            todos = todos.filter(item => item.text.toLowerCase().includes(query.toLowerCase()));
           }
 
           // Update the state with the fetched todos.
@@ -259,22 +244,16 @@ const ToDoList: React.FC = () => {
   );
 
   // Filter the list based on the hideChecked flag and selectedStatus.
-  const filteredList = hideChecked
-    ? list.filter((item) => !item.checked)
-    : list;
+  const filteredList = hideChecked ? list.filter(item => !item.checked) : list;
   const filteredByStatus = selectedStatus
-    ? filteredList.filter((item) => item.status === selectedStatus.value)
+    ? filteredList.filter(item => item.status === selectedStatus.value)
     : filteredList;
 
   return (
     <>
       <div className="filterContainer">
         <label>
-          <input
-            type="checkbox"
-            checked={hideChecked}
-            onChange={() => setHideCheckedAndSave(!hideChecked)}
-          />
+          <input type="checkbox" checked={hideChecked} onChange={() => setHideCheckedAndSave(!hideChecked)} />
           Hide checked items
         </label>
         <div className="inputFieldContainer">
@@ -294,7 +273,7 @@ const ToDoList: React.FC = () => {
         />
       </div>
       <Suspense fallback={<div>Loading...</div>}>
-        <ItemList
+        <Todos
           listItems={filteredByStatus}
           toggleItemChecked={toggleItemChecked}
           onUpdateStatus={updateStatus}
@@ -302,48 +281,31 @@ const ToDoList: React.FC = () => {
         />
       </Suspense>
 
-      <div className="inputFieldContainer">
-        <div className="inputField">
-          <div>
-            <Select
-              aria-label="Select what priority"
-              value={selectedPriority}
-              onChange={setSelectedPriority}
-              options={priorityOptions}
-              placeholder="Select Priority"
-              isSearchable={false}
-              isClearable
-              className="filterSelect"
-            />
-            <Select
-              aria-label="Select what subject"
-              value={selectedSubject}
-              onChange={setSelectedSubject}
-              options={subjectOptions}
-              placeholder="Select Subject"
-              isSearchable={false}
-              isClearable
-              className="filterSelect"
-            />
-          </div>
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Task description..."
-            value={inputValue}
-            autoFocus
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                addItem();
-              }
-            }}
+      <AddTodo>
+        <div className="flex gap-4">
+          <Select
+            aria-label="Select what priority"
+            value={selectedPriority}
+            onChange={setSelectedPriority}
+            options={priorityOptions}
+            placeholder="Select Priority"
+            isSearchable={false}
+            isClearable
+            className="filterSelect"
+          />
+          <Select
+            aria-label="Select what subject"
+            value={selectedSubject}
+            onChange={setSelectedSubject}
+            options={subjectOptions}
+            placeholder="Select Subject"
+            isSearchable={false}
+            isClearable
+            className="filterSelect"
           />
         </div>
-        <button title="Add Item" type="button" onClick={addItem}>
-          <FontAwesomeIcon icon={faPlus} />
-        </button>
-      </div>
+        <AddTodoInput inputValue={inputValue} inputRef={inputRef} addItem={addItem} setInputValue={setInputValue} />
+      </AddTodo>
     </>
   );
 };
