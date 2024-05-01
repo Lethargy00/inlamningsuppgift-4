@@ -21,7 +21,7 @@ import SearchBar from "./SearchBar";
 import Checkbox from "./Checkbox";
 import Filter from "./filter/Filter";
 import AddTodo from "./addTodo/AddTodo";
-import AddTodoInput from "./addTodo/addTodoInput/addTodoInput";
+import AddTodoInput from "./addTodo/addTodoInput/AddTodoInput";
 
 const Todos = React.lazy(() => import("./todos/Todos"));
 
@@ -294,10 +294,20 @@ const ToDoList: React.FC = () => {
           />
 
           <div className="sortContainer">
-            <button type="button" onClick={sortAZ} className="sortButton">
+            <button
+              title="Sort from A to Z"
+              type="button"
+              onClick={sortAZ}
+              className="sortButton"
+            >
               <FontAwesomeIcon icon={faArrowDownAZ} />
             </button>
-            <button type="button" onClick={sortZA} className="sortButton">
+            <button
+              title="Sort from Z to A"
+              type="button"
+              onClick={sortZA}
+              className="sortButton"
+            >
               <FontAwesomeIcon icon={faArrowUpZA} />
             </button>
           </div>
@@ -312,7 +322,7 @@ const ToDoList: React.FC = () => {
             placeholder="Filter by status"
             isSearchable={false}
             isClearable
-            className="filterSelect"
+            className="select"
           />
         </section>
       </Filter>
@@ -336,7 +346,7 @@ const ToDoList: React.FC = () => {
             placeholder="Select Priority"
             isSearchable={false}
             isClearable
-            className="filterSelect"
+            className="select"
           />
           <Select
             aria-label="Select what subject"
@@ -346,7 +356,7 @@ const ToDoList: React.FC = () => {
             placeholder="Select Subject"
             isSearchable={false}
             isClearable
-            className="filterSelect"
+            className="select"
           />
         </div>
         <AddTodoInput

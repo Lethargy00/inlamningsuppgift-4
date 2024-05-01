@@ -3,7 +3,13 @@
     flex-direction: column;
     overflow-x: auto;
     flex-grow: 1;
+
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
-    gap: 15px;
 }

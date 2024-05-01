@@ -17,16 +17,18 @@ export default function ItemList({
   onRemoveItem,
 }: ItemListProps) {
   return (
-    <ul className={style.container}>
-      {listItems.map((item) => (
-        <Todo
-          key={item.id.toString()}
-          item={item}
-          toggleItemChecked={toggleItemChecked}
-          onUpdateStatus={onUpdateStatus}
-          onRemoveItem={onRemoveItem}
-        />
-      ))}
-    </ul>
+    <section className={style.container}>
+      <ul className={style.list}>
+        {listItems.map((item) => (
+          <Todo
+            key={item.id.toString()}
+            item={item}
+            toggleItemChecked={toggleItemChecked}
+            onUpdateStatus={onUpdateStatus}
+            onRemoveItem={onRemoveItem}
+          />
+        ))}
+      </ul>
+    </section>
   );
 }

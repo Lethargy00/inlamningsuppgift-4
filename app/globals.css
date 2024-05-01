@@ -19,6 +19,7 @@
   --color-text: #000000;
   --color-alt-text: #ffffff;
   --color-dark-text: #DAB693;
+  --color-placeholder: #8d7f6f;
 }
 
 [data-theme="dark"] {
@@ -27,6 +28,7 @@
   --color-text: #ffffff;
   --color-alt-text: #000000;
   --color-dark-text: #1C1C1C;
+  --color-placeholder: #9CA3AF;
 }
 
 html {
@@ -53,96 +55,52 @@ main {
   height: 72vh;
 }
 
-.filterSelect {
+.select {
   display: flex;
+  height: 100%;
 }
 
-.filterSelect [class$="-Svg"] {
+.select [class$="-Svg"] {
   cursor: pointer;
 }
 
-.filterSelect [class$="-indicatorContainer"] > svg {
+.select [class$="-indicatorContainer"] > svg {
   color: var(--color-text);
 }
 
-.filterSelect [class$="-singleValue"] {
+.select [class$="-singleValue"] {
   color: var(--color-text);
 }
 
-.filterSelect [class$="-placeholder"] {
+.select [class$="-placeholder"] {
   color: var(--color-text);
 }
 
-.filterSelect [class$="-control"] {
+.select [class$="-control"] {
   background-color: var(--color-bg);
   border: none;
   border-radius: 15px;
 }
 
-.filterSelect [class$="-menu"] {
+.select [class$="-menu"] {
   background-color: var(--color-bg);
 }
 
-.filterSelect [class$="-value-container"] {
+.select [class$="-value-container"] {
   background-color: var(--color-alt-bg);
 }
 
-.filterSelect [class$="-option"] {
+.select [class$="-option"] {
   color: var(--color-text);
   background-color: var(--color-bg);
 }
 
-.filterSelect [class$="-option"]:hover {
+.select [class$="-option"]:hover {
   background-color: var(--color-alt-bg);
 }
 
-.filterSelect [class$="-indicatorSeparator"] {
+.select [class$="-indicatorSeparator"] {
   background-color: var(--color-text);
-}
-
-.inputFieldContainer {
-  display: flex;
-  height: 100px;
-  align-items: start;
-}
-
-.inputFieldContainer > button {
-  display: flex;
-  color: var(--color-bg);
-  font-size: 24px;
-  margin-top: 50px;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-.inputFieldContainer > button:hover {
-  color: #93ff78;
-}
-
-.inputField {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 15px;
-  outline: none;
-  color: var(--color-text);
-  border: 15px solid var(--color-bg);
-  border-radius: 15px;
-  background-color: var(--color-bg);
-}
-
-.inputField > div:first-child {
-  display: flex;
-  gap: 15px;
-  flex-direction: row;
-}
-
-.inputField > input {
-  outline: none;
-  color: var(--color-text);
-  border: 15px solid var(--color-bg);
-  border-radius: 15px;
-  background-color: var(--color-bg);
 }
 
 .section {
