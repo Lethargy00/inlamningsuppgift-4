@@ -20,10 +20,10 @@ Just ToDo It! is a simple simple app that helps you keep track of tasks.
 <hr>
 
 ## Week 18 - Requirements
-- [ ] Searchbar (Should filter the list title).
-- [ ] Filter by name?
-- [ ] Use of Lazy loading on listItems.
-- [ ] Semantic HTML and ARIA-Tags.
-- [ ] Navigatable with screen readers.
-- [ ] WCAG 2.1 Standards (ex. Low vision, Mobile Accessibility).
-- [ ] [ Not Required ] Sorting the code into components, hooks, options etc.
+- [X] Searchbar (Should filter the list title).
+- [X] Filter by name?
+- [X] Use of Lazy loading on listItems.
+- [X] Semantic HTML and ARIA-Tags.
+- [X] Navigatable with screen readers.
+- [X] WCAG 2.1 Standards (ex. Low vision, Mobile Accessibility).
+- [X] [ Not Required ] Sorting the code into components, hooks, options etc.
