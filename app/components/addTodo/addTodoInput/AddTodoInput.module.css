@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    gap: 15px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 15px;
+    outline: none;
+    color: var(--color-text);
+    border: 15px solid var(--color-bg);
+    border-radius: 15px;
+    background-color: var(--color-bg);
+}
+
+.input::placeholder {
+    color: var(--color-placeholder);
+}
+
+.button {
+    font-size: 24px;
+    color: var(--color-text);
+}
+
+.button:hover {
+    color: #7fe284;
+}

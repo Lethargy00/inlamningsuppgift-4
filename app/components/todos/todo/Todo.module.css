@@ -1,0 +1,132 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg);
+    border: 15px solid var(--color-bg);
+    border-radius: 15px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  position: relative;
+}
+
+.checkbox:hover {
+  border-color: #93ff78;
+}
+
+.checkbox:checked {
+  border-color: #93ff78;
+}
+
+.checkbox:checked::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 12px;
+  color: #93ff78;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.text {
+    font-size: 20px;
+}
+
+.select {
+    margin-left: auto;
+    font-size: 0.8em;
+}
+
+.select [class$="-Svg"] {
+    cursor: pointer;
+}
+
+.select [class$="-indicatorContainer"] > svg {
+    color: var(--color-text);
+}
+
+.select [class$="-singleValue"] {
+    color: var(--color-text);
+}
+
+.select [class$="-placeholder"] {
+    color: var(--color-text);
+}
+
+.select [class$="-control"] {
+    background-color: var(--color-alt-bg);
+    border: none;
+}
+
+.select [class$="-menu"] {
+    background-color: var(--color-alt-bg);
+}
+
+.select [class$="-value-container"] {
+    background-color: var(--color-bg);
+}
+
+.select [class$="-option"] {
+    color: var(--color-text);
+    background-color: var(--color-alt-bg);
+}
+
+.select [class$="-option"]:hover {
+    background-color: var(--color-bg);
+}
+
+.select [class$="-indicatorSeparator"] {
+    background-color: var(--color-text);
+}
+.button:hover {
+    color: #ff5757;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.subText {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--color-text);
+}
+
+.subjectText {
+    margin-left: 5px;
+}
+
+.priorityText {
+    margin-right: 5px;
+}
+
+.red {
+    color: #EF4444;
+}
+
+.orange {
+    color: #F97316;
+}
+
+.green {
+    color: #22C55E;
+}

@@ -21,7 +21,7 @@ import SearchBar from "./SearchBar";
 import Checkbox from "./Checkbox";
 import Filter from "./filter/Filter";
 import AddTodo from "./addTodo/AddTodo";
-import AddTodoInput from "./addTodo/addTodoInput/addTodoInput";
+import AddTodoInput from "./addTodo/addTodoInput/AddTodoInput";
 
 const Todos = React.lazy(() => import("./todos/Todos"));
 
@@ -287,43 +287,44 @@ const ToDoList: React.FC = () => {
   return (
     <>
       <Filter>
-        <Checkbox
-          hideChecked={hideChecked}
-          setHideChecked={() => setHideCheckedAndSave(!hideChecked)}
-        />
+        <section className="section">
+          <Checkbox
+            hideChecked={hideChecked}
+            setHideChecked={() => setHideCheckedAndSave(!hideChecked)}
+          />
 
-        <SearchBar query={query} onQuery={setQuery} />
-
-        {/* Buttons to sort todos from A to Z and from Z to A */}
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4 ">
+          <div className="sortContainer">
             <button
+              title="Sort from A to Z"
               type="button"
               onClick={sortAZ}
-              className="px-3 py-2 rounded-[15px] bg-[#dac0a3] hover:bg-[#d8b38a]"
+              className="sortButton"
             >
               <FontAwesomeIcon icon={faArrowDownAZ} />
             </button>
             <button
+              title="Sort from Z to A"
               type="button"
               onClick={sortZA}
-              className="px-3 py-2 rounded-[15px] bg-[#dac0a3]"
+              className="sortButton"
             >
               <FontAwesomeIcon icon={faArrowUpZA} />
             </button>
           </div>
-        </div>
-
-        <Select
-          aria-label="Filter by status"
-          value={selectedStatus}
-          onChange={setSelectedStatusAndSave}
-          options={statusOptions}
-          placeholder="Filter by status"
-          isSearchable={false}
-          isClearable
-          className="filterSelect"
-        />
+        </section>
+        <section className="section">
+          <SearchBar query={query} onQuery={setQuery} />
+          <Select
+            aria-label="Filter by status"
+            value={selectedStatus}
+            onChange={setSelectedStatusAndSave}
+            options={statusOptions}
+            placeholder="Filter by status"
+            isSearchable={false}
+            isClearable
+            className="select"
+          />
+        </section>
       </Filter>
 
       <Suspense fallback={<div>Loading...</div>}>
@@ -345,7 +346,7 @@ const ToDoList: React.FC = () => {
             placeholder="Select Priority"
             isSearchable={false}
             isClearable
-            className="filterSelect"
+            className="select"
           />
           <Select
             aria-label="Select what subject"
@@ -355,7 +356,7 @@ const ToDoList: React.FC = () => {
             placeholder="Select Subject"
             isSearchable={false}
             isClearable
-            className="filterSelect"
+            className="select"
           />
         </div>
         <AddTodoInput

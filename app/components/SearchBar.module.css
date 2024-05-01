@@ -13,6 +13,10 @@
     padding-right: 30px;
 }
 
+.textInput::placeholder {
+    color: var(--color-placeholder);
+}
+
 .clearButton {
     position: absolute;
     right: 15px;
