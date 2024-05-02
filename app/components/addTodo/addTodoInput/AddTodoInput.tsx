@@ -18,6 +18,7 @@ export default function AddTodoInput({
   return (
     <div className={style.container}>
       <input
+        aria-label="Task description"
         className={style.input}
         ref={inputRef}
         type="text"

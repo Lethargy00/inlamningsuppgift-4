@@ -29,7 +29,7 @@ export default function Todo({
       <div className={style.header}>
         <input
           className={style.checkbox}
-          title="Check Item"
+          aria-label="Check Item"
           type="checkbox"
           checked={item.checked}
           onChange={() => toggleItemChecked(item.id)}
@@ -49,7 +49,7 @@ export default function Todo({
         />
         <button
           className={style.button}
-          title="Remove"
+          title="Remove item"
           onClick={() => onRemoveItem(item.id)}
         >
           <FontAwesomeIcon icon={faTrashCan} />

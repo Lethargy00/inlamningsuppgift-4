@@ -4,7 +4,7 @@ import { openDB } from "idb";
 import Select from "react-select";
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDownAZ, faArrowUpZA } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDownAZ, faArrowUpAZ } from "@fortawesome/free-solid-svg-icons";
 import {
   statusOptions,
   priorityOptions,
@@ -326,7 +326,7 @@ const ToDoList: React.FC = () => {
               }}
             >
               <FontAwesomeIcon
-                icon={sortOrder === "AtoZ" ? faArrowDownAZ : faArrowUpZA}
+                icon={sortOrder === "AtoZ" ? faArrowDownAZ : faArrowUpAZ}
               />
             </button>
           </div>

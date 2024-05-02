@@ -24,7 +24,9 @@ This is a simple task management application. Tasks can be assigned a category, 
 - Lazy loading of the component containing the list of todos was added but due to the minimal amount of data used the difference in performance is negligible.
 
 ## Accessability (assignment part 2)
-- ARIA-labels etc. has been added... (LINUS kompletterar denna en aning)
+- ARIA-labels has been added
+- Title's on buttons
+- Colours so it has better contrast
 
 ## Coding challenges
 ### Part 1

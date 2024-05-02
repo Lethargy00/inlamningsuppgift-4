@@ -11,6 +11,7 @@ export default function SearchBar({ query, onQuery }: SearchBarProps) {
   return (
     <div className={style.inputContainer}>
       <input
+        aria-label="Search tasks"
         className={style.textInput}
         type="text"
         placeholder="Search tasks..."
