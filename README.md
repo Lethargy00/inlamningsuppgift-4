@@ -16,5 +16,19 @@ This is a simple task management application. Tasks can be assigned a category, 
 - Task related data is stored on the client using IndexedDB
 - Settings related data is stored in Local Storage
 
+## UX Improvements (assignment part 2)
+- Search bar added that enables the user to search for specific todos based on its title. Improved user experience when the list contains many todos
+- Sort button added. Possible for the user to toggle sorting from A>Z or Z>A. A common feature in many lists that can be useful in some circumstances
+
+## Performance optimizations
+- Lazy loading of the component containing the list of todos was added but due to the minimal amount of data used the difference in performance is negligible.
+
+## Accessability
+- ARIA-labels etc. has been added... (LINUS kompletterar denna en aning)
+
 ## Coding challenges
+### Part 1
 The most difficult part of building this application was understanding IndexedDB using the installed idb-package.
+### Part 2
+In the second part of the assignment we did not encounter any notable obstacles due to the relatively simple improvements that were made.
+
