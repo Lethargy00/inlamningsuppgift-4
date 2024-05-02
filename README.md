@@ -20,10 +20,10 @@ This is a simple task management application. Tasks can be assigned a category, 
 - Search bar added that enables the user to search for specific todos based on its title. Improved user experience when the list contains many todos
 - Sort button added. Possible for the user to toggle sorting from A>Z or Z>A. A common feature in many lists that can be useful in some circumstances
 
-## Performance optimizations
+## Performance optimizations (assignment part 2)
 - Lazy loading of the component containing the list of todos was added but due to the minimal amount of data used the difference in performance is negligible.
 
-## Accessability
+## Accessability (assignment part 2)
 - ARIA-labels etc. has been added... (LINUS kompletterar denna en aning)
 
 ## Coding challenges
