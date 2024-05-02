@@ -49,6 +49,9 @@ const ToDoList: React.FC = () => {
   );
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  //define state variabel for the sort order
+  const [sortOrder, setSortOrder] = useState<'AtoZ' | 'ZtoA'>('AtoZ');
+
 
   // Filter by Name
   // Add sorting functions to sort the list of todos
@@ -62,6 +65,19 @@ const ToDoList: React.FC = () => {
     const sorted = [...list].sort((a, b) => b.text.localeCompare(a.text));
     setList(sorted);
   };
+
+  // Function to toggle the sort order
+  const toggleSortOrder = () => {
+    setSortOrder(prevSortOrder => prevSortOrder === 'AtoZ' ? 'ZtoA' : 'AtoZ')
+  };
+
+  const sortList = () => {
+    if (sortOrder === 'AtoZ') {
+      sortAZ();
+    } else {
+      sortZA();
+    }
+  }
 
   // Function to toggle the hideChecked state an save it to localStorage.
   const setHideCheckedAndSave = (hideChecked: boolean) => {
@@ -118,6 +134,8 @@ const ToDoList: React.FC = () => {
       priority: selectedPriority ? selectedPriority.value : "low", // Default to 'low' if not selected
       subject: selectedSubject ? selectedSubject.value : "home", // Default to 'home' if not selected
     };
+
+    
 
     // Clear the input field.
     setInputValue("");
@@ -295,19 +313,14 @@ const ToDoList: React.FC = () => {
 
           <div className="sortContainer">
             <button
-              title="Sort from A to Z"
               type="button"
-              onClick={sortAZ}
               className="sortButton"
+              onClick={() => {
+                toggleSortOrder();
+                sortList();
+              }}
             >
               <FontAwesomeIcon icon={faArrowDownAZ} />
-            </button>
-            <button
-              title="Sort from Z to A"
-              type="button"
-              onClick={sortZA}
-              className="sortButton"
-            >
               <FontAwesomeIcon icon={faArrowUpZA} />
             </button>
           </div>
