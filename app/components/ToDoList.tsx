@@ -50,34 +50,36 @@ const ToDoList: React.FC = () => {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   //define state variabel for the sort order
-  const [sortOrder, setSortOrder] = useState<'AtoZ' | 'ZtoA'>('AtoZ');
-
+  const [sortOrder, setSortOrder] = useState<"AtoZ" | "ZtoA">("AtoZ");
 
   // Filter by Name
   // Add sorting functions to sort the list of todos
   // Local Compare is built in function to sort the list alphabetically.
   const sortAZ = () => {
-    const sorted = [...list].sort((a, b) => a.text.localeCompare(b.text));
+    const sorted = [...list].sort((a, b) => b.text.localeCompare(a.text));
+    console.log(sorted);
     setList(sorted);
   };
 
   const sortZA = () => {
-    const sorted = [...list].sort((a, b) => b.text.localeCompare(a.text));
+    const sorted = [...list].sort((a, b) => a.text.localeCompare(b.text));
     setList(sorted);
   };
 
   // Function to toggle the sort order
   const toggleSortOrder = () => {
-    setSortOrder(prevSortOrder => prevSortOrder === 'AtoZ' ? 'ZtoA' : 'AtoZ')
+    setSortOrder((prevSortOrder) =>
+      prevSortOrder === "AtoZ" ? "ZtoA" : "AtoZ"
+    );
   };
 
   const sortList = () => {
-    if (sortOrder === 'AtoZ') {
+    if (sortOrder === "AtoZ") {
       sortAZ();
     } else {
       sortZA();
     }
-  }
+  };
 
   // Function to toggle the hideChecked state an save it to localStorage.
   const setHideCheckedAndSave = (hideChecked: boolean) => {
@@ -134,8 +136,6 @@ const ToDoList: React.FC = () => {
       priority: selectedPriority ? selectedPriority.value : "low", // Default to 'low' if not selected
       subject: selectedSubject ? selectedSubject.value : "home", // Default to 'home' if not selected
     };
-
-    
 
     // Clear the input field.
     setInputValue("");
@@ -298,7 +298,7 @@ const ToDoList: React.FC = () => {
   const filteredList = hideChecked
     ? list.filter((item) => !item.checked)
     : list;
-  const filteredByStatus = selectedStatus
+  let filteredByStatus = selectedStatus
     ? filteredList.filter((item) => item.status === selectedStatus.value)
     : filteredList;
 
@@ -313,6 +313,11 @@ const ToDoList: React.FC = () => {
 
           <div className="sortContainer">
             <button
+              title={
+                sortOrder === "AtoZ"
+                  ? "Sorted from A to Z"
+                  : "Sorted from Z to A"
+              }
               type="button"
               className="sortButton"
               onClick={() => {
@@ -320,8 +325,9 @@ const ToDoList: React.FC = () => {
                 sortList();
               }}
             >
-              <FontAwesomeIcon icon={faArrowDownAZ} />
-              <FontAwesomeIcon icon={faArrowUpZA} />
+              <FontAwesomeIcon
+                icon={sortOrder === "AtoZ" ? faArrowDownAZ : faArrowUpZA}
+              />
             </button>
           </div>
         </section>
